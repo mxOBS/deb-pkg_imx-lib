@@ -1,0 +1,5 @@
+imx-lib (3.14.28-1.0.0-1) unstable; urgency=low
+
+  * Initial release (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+
+ -- unknown <josua@unknown>  Fri, 08 May 2015 12:15:07 +0200

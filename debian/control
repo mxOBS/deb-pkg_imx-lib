@@ -1,0 +1,65 @@
+Source: imx-lib
+Priority: extra
+Maintainer: Josua Mayer <privacy@not.given>
+Build-Depends: debhelper (>= 8.0.0), kernel-cubox-i-dev
+Standards-Version: 3.9.3
+Section: libs
+#Homepage: <insert the upstream URL, if relevant>
+#Vcs-Git: git://git.debian.org/collab-maint/imx-lib.git
+#Vcs-Browser: http://git.debian.org/?p=collab-maint/imx-lib.git;a=summary
+
+Package: imx-lib
+Section: libs
+Architecture: any-arm
+Depends: libipu0, libpxp0, libcec1
+Description: TODO
+ T. O. D. O.
+
+Package: imx-lib-dev
+Section: libdevel
+Architecture: any-arm
+Depends: imx-lib (= ${binary:Version})
+Description: TODO
+ T. O. D. O.
+
+Package: libipu0
+Section: libs
+Architecture: any-arm
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: TODO
+ T. O. D. O.
+
+Package: libipu-dev
+Section: libdevel
+Architecture: any-arm
+Depends: libipu0 (= ${binary:Version})
+Description: TODO
+ T. O. D. O.
+
+Package: libpxp0
+Section: libs
+Architecture: any-arm
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: TODO
+ T. O. D. O.
+
+Package: libpxp-dev
+Section: libdevel
+Architecture: any-arm
+Depends: libpxp0 (= ${binary:Version})
+Description: TODO
+ T. O. D. O.
+
+Package: libcec1
+Section: libs
+Architecture: any-arm
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: TODO
+ T. O. D. O.
+
+Package: libcec-dev
+Section: libdevel
+Architecture: any-arm
+Depends: libcec1 (= ${binary:Version})
+Description: TODO
+ T. O. D. O.
