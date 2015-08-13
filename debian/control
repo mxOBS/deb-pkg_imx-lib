@@ -1,7 +1,7 @@
 Source: imx-lib
 Priority: extra
 Maintainer: Josua Mayer <privacy@not.given>
-Build-Depends: debhelper (>= 8.0.0), kernel-cubox-i-dev
+Build-Depends: debhelper (>= 8.0.0), imx-kernel-api
 Standards-Version: 3.9.3
 Section: libs
 #Homepage: <insert the upstream URL, if relevant>

@@ -12,8 +12,8 @@
 # import standard compile flags
 include /usr/share/dpkg/buildflags.mk
 
-# guess imx kernel header directory
-IMXHDR=$(shell echo /usr/include/kernel-*-cubox-i)
+# define imx kernel header directory
+IMXHDR=/usr/include/imx-kernel-api
 
 %:
 	dh $@ --parallel
