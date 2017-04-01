@@ -1,7 +1,7 @@
 Source: imx-lib
 Priority: extra
 Maintainer: Josua Mayer <privacy@not.given>
-Build-Depends: debhelper (>= 8.0.0), imx-kernel-api
+Build-Depends: debhelper (>= 8.0.0), dpkg-dev (>= 1.16.1~), imx-kernel-api
 Standards-Version: 3.9.3
 Section: libs
 #Homepage: <insert the upstream URL, if relevant>
@@ -12,54 +12,54 @@ Package: imx-lib
 Section: libs
 Architecture: any-arm
 Depends: libipu0, libpxp0, libcec1
-Description: TODO
- T. O. D. O.
+Description: Freescale i.MX6 library collection
+ Provides a set of libraries for using i.MX6 SoC components including IPU, VPU, PxP and CEC.
 
 Package: imx-lib-dev
 Section: libdevel
 Architecture: any-arm
-Depends: imx-lib (= ${binary:Version})
-Description: TODO
- T. O. D. O.
+Depends: imx-lib (= ${binary:Version}), libipu-dev, libpxp-dev, libcec-dev
+Description: Development files for imx-lib
+ Provides libraries and headers to create programs with imx-lib.
 
 Package: libipu0
 Section: libs
 Architecture: any-arm
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: TODO
- T. O. D. O.
+Description: i.MX6 IPU library
+ Library for using the i.MX6 IPU.
 
 Package: libipu-dev
 Section: libdevel
 Architecture: any-arm
 Depends: libipu0 (= ${binary:Version})
-Description: TODO
- T. O. D. O.
+Description: Development files for libipu0
+ Provides libraries and headers to create programs with libipu0.
 
 Package: libpxp0
 Section: libs
 Architecture: any-arm
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: TODO
- T. O. D. O.
+Description: i.MX6 pxp library
+ Library for using the i.MX6 PxP unit.
 
 Package: libpxp-dev
 Section: libdevel
 Architecture: any-arm
 Depends: libpxp0 (= ${binary:Version})
-Description: TODO
- T. O. D. O.
+Description: Development files for libpxp
+ Provides libraries and headers to create programs with libpxp0.
 
 Package: libcec1
 Section: libs
 Architecture: any-arm
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: TODO
- T. O. D. O.
+Description: i.MX6 CEC library
+ Library for using CEC on i.MX6 SoCs.
 
 Package: libcec-dev
 Section: libdevel
 Architecture: any-arm
 Depends: libcec1 (= ${binary:Version})
-Description: TODO
- T. O. D. O.
+Description: Development files for libcec1
+ Provides libraries and headers to create programs with libcec1.
