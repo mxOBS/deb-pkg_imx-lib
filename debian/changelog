@@ -1,3 +1,9 @@
+imx-lib (6.0) UNRELEASED; urgency=medium
+
+  * Freescale update
+
+ -- Josua Mayer <josua.mayer97@gmail.com>  Sun, 15 Oct 2017 16:47:20 +0200
+
 imx-lib (5.1) stable; urgency=medium
 
   * Freescale update
