@@ -1,7 +1,7 @@
 /*
  * pxp_lib - a user space library for PxP
  *
- * Copyright (C) 2013-2014 Freescale Semiconductor, Inc.
+ * Copyright (C) 2013-2016 Freescale Semiconductor, Inc.
  */
 
 /*
@@ -37,28 +37,28 @@ static int debug_level = DBG_ERR;
 
 static int fd = -1;
 static int active_open_nr;
-static pthread_spinlock_t lock;
+static pthread_mutex_t lock;
 
 int pxp_init(void)
 {
-	pthread_spin_lock(&lock);
+	pthread_mutex_lock(&lock);
 	if (fd > 0) {
 		active_open_nr++;
-		pthread_spin_unlock(&lock);
+		pthread_mutex_unlock(&lock);
 		return 0;
 	}
 
 	if (fd < 0) {
 		fd = open(PXP_DEVICE_NAME, O_RDWR, 0);
 		if (fd < 0) {
-			pthread_spin_unlock(&lock);
+			pthread_mutex_unlock(&lock);
 			dbg(DBG_ERR, "open file error.\n");
 			return -1;
 		}
 	}
 
 	active_open_nr++;
-	pthread_spin_unlock(&lock);
+	pthread_mutex_unlock(&lock);
 	return 0;
 }
 
@@ -86,6 +86,11 @@ int pxp_config_channel(pxp_chan_handle_t *pxp_chan, struct pxp_config_data *pxp_
 
 	pxp_conf->handle = pxp_chan->handle;
 	dbg(DBG_INFO, "channel handle %d\n\n", pxp_conf->handle);
+
+#ifdef PXP_DEVICE_LEGACY
+        dbg(DBG_INFO, "use legacy pxp driver\n");
+        pxp_conf->proc_data.pxp_legacy = true;
+#endif
 
 	ret = ioctl(fd, PXP_IOC_CONFIG_CHAN, pxp_conf);
 
@@ -118,9 +123,9 @@ int pxp_wait_for_completion(pxp_chan_handle_t *pxp_chan, int times)
 
 void pxp_uninit(void)
 {
-	pthread_spin_lock(&lock);
+	pthread_mutex_lock(&lock);
 	if (fd == -1) {
-		pthread_spin_unlock(&lock);
+		pthread_mutex_unlock(&lock);
 		return;
 	}
 
@@ -133,7 +138,7 @@ void pxp_uninit(void)
 			fd = -1;
 		}
 	}
-	pthread_spin_unlock(&lock);
+	pthread_mutex_unlock(&lock);
 }
 
 /*
@@ -185,7 +190,7 @@ int pxp_get_virtmem(struct pxp_mem_desc *mem)
 int pxp_put_virtmem(struct pxp_mem_desc *mem)
 {
 	if (mem->virt_uaddr != 0) {
-		if (munmap((void *)mem->virt_uaddr, mem->size) != 0)
+		if (munmap((void*)(intptr_t)mem->virt_uaddr, mem->size) != 0)
 			dbg(DBG_ERR, "UNMAP_FAILED.\n");
 	}
 
